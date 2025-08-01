@@ -1,19 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Colors } from '@/constants/Colors';
+import { StyleSheet, TextInput, View } from 'react-native';
 export default function ChatScreen() {
   return (
           <View style={styles.container}>
-            <Text>Chat Screen </Text>
-            <StatusBar style='auto'></StatusBar>
+            {/* <Text>Chat Screen </Text> */}
+            {/* <StatusBar style='auto'></StatusBar> */}
+
+            <View>
+                <TextInput
+                 style={styles.textbox}
+                 placeholder = "Type a message..."
+                 >
+
+                </TextInput>
+            </View>
           </View>
   );
 }
 
 const styles = StyleSheet.create({
+    textbox: {
+
+    },
 
     container: {
     flex:1,
-    backgroundColor: '#fff',
+    backgroundColor: Colors.greyBg,
     alignItems: 'center',
     justifyContent: 'center'
   },
