@@ -1,30 +1,39 @@
 import { Colors } from '@/constants/Colors';
 import Feather from '@expo/vector-icons/Feather';
-import React from 'react';
+import { React, useCallback, useState } from 'react';
 import { KeyboardAvoidingView, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 
-
 export default function ChatScreen() {
+
+  const [messageText,setMessageText] = useState("");
+
+  // use callback to avoid rerendering
+  const sendMessage = useCallback(
+    ()=>{
+    setMessageText("");
+  }, [] );
+  
   return (
     <KeyboardAvoidingView style={{flex:1}} behavior='padding' keyboardVerticalOffset={100}>
         <View style={styles.container}>
-            {/* <Text>Chat Screen </Text> */}
-            {/* <StatusBar style='auto'></StatusBar> */}
-
+           
             <View style={styles.messageContainer}></View>
             <View style={styles.inputContainer}>
                 <TextInput
                  style={styles.textbox}
                  placeholder = "Type a message..."
-                 >
+                 onChangeText={(text)=>{setMessageText(text)}}
 
+                 value={messageText}
+                 >
+                
                 </TextInput>
 
-                <TouchableOpacity style={styles.sendButton}>
+                <TouchableOpacity style={styles.sendButton} onPress={sendMessage}>
                     <Feather name="send" size={18} color="white" />
                 </TouchableOpacity>
             </View>
-          </View>
+        </View>
     </KeyboardAvoidingView>
           
   );
